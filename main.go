@@ -5,8 +5,6 @@ import (
 	"go_gorms_lat/model"
 	"go_gorms_lat/repo"
 	"log"
-
-	"github.com/google/uuid"
 )
 
 func main() {
@@ -21,27 +19,27 @@ func main() {
 
 	custRepo := repo.NewCustomerRepository(db)
 
-	//Insert Data Baru
+	// Insert Data Baru
 
-	id := uuid.New()
+	// id := uuid.New()
 
-	customer01 := model.Customer{
-		Id:      id.String(),
-		Name:    "Poki Poi",
-		Phone:   "07689999",
-		Balance: 20000,
-	}
+	// customer01 := model.Customer{
+	// 	Id:      id.String(),
+	// 	Name:    "Utasmi",
+	// 	Phone:   "3535456",
+	// 	Balance: 20000,
+	// }
 
-	err := custRepo.Create(&customer01)
+	// err := custRepo.Create(&customer01)
 
-	if err != nil {
-		log.Println(err.Error())
-	}
+	// if err != nil {
+	// 	log.Println(err.Error())
+	// }
 
 	//Update Data yang udh ada
 
 	// customerUpdate := model.Customer{
-	// 	Id: "e4c95648-6fbe-49b1-b88b-c91a048c4ceb",
+	// 	Id: "36a3ebd0-9422-4973-9692-37e0114481bd",
 	// }
 
 	// err := custRepo.Update(&customerUpdate, map[string]interface{}{
@@ -56,10 +54,10 @@ func main() {
 	//Delete
 
 	customerDelete := model.Customer{
-		Id: "c9c3f49e-f282-4ee6-a185-ba826481b804",
+		Id: "36a3ebd0-9422-4973-9692-37e0114481bd",
 	}
 
-	err = custRepo.Delete(&customerDelete)
+	err := custRepo.Delete(&customerDelete)
 
 	if err != nil {
 		log.Println(err.Error())

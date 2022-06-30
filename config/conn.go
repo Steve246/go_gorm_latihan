@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"go_gorms_lat/model"
 	"go_gorms_lat/utils"
 
 	"gorm.io/driver/postgres"
@@ -22,6 +23,7 @@ func (c *Config) initDb() {
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
+	env := os.Getenv("ENV")
 
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s", dbHost, dbUser, dbPassword, dbName, dbPort)
 
@@ -30,6 +32,19 @@ func (c *Config) initDb() {
 	utils.IsError(err)
 
 	c.Db = db
+
+	if env == "dev" {
+		c.Db = db.Debug()
+	} else if env == "migration" {
+		c.Db = db.Debug()
+		err := c.Db.AutoMigrate(&model.Customer{})
+
+		if err != nil {
+			return
+		}
+	} else {
+		c.Db = db
+	}
 
 }
 
