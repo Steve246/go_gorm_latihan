@@ -53,4 +53,16 @@ func main() {
 	// 	log.Println(err.Error())
 	// }
 
+	//Delete
+
+	customerDelete := model.Customer{
+		Id: "c9c3f49e-f282-4ee6-a185-ba826481b804",
+	}
+
+	err = custRepo.Delete(&customerDelete)
+
+	if err != nil {
+		log.Println(err.Error())
+	}
+
 }
